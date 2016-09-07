@@ -1,0 +1,1 @@
+sudo apachectl -k restart -f /Users/fantasic/Documents/cooder/webdemo/conf/httpd.conf
