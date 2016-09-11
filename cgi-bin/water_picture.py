@@ -6,6 +6,7 @@ import cgi
 import traceback
 import json
 import re
+import random
 sys.path.append('../common/')
 sys.path.append('../conf/')
 from log import logger
@@ -20,6 +21,7 @@ def get_img_url(ret_root):
         img = {}
         img['src'] = row['c_url']
         img_list.append(img)
+    random.shuffle(img_list)
 
     ret_root['data'] = img_list
 
