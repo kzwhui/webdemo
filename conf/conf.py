@@ -5,23 +5,14 @@ class GlobalConfig(object):
     全局配置文件
     '''
     DB_CONF = {
-                'd_crawler_info' : {
+                'd_web_demo' : {
                     'host' : '127.0.0.1',
                     'port' : 3306,
                     'user' : 'root',
                     'passwd' : 'zheng',
-                    'db' : 'd_crawler_info',
+                    'db' : 'd_web_demo',
                     'charset' : 'utf8'
                 },
-
-                'd_finance' : {
-                    'host' : '127.0.0.1',
-                    'port' : 3306,
-                    'user' : 'root',
-                    'passwd' : 'zheng',
-                    'db' : 'd_finance',
-                    'charset' : 'utf8'
-                }
             }
 
     MAIL_CONF = {

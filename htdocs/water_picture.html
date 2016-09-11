@@ -11,89 +11,13 @@
 	<div class="animated shake" id="banner">My Art Gallery</div>
 	<div id="container">
 
-		<div class="picbox">
+		<!-- <div class="picbox">
 			<div class="pic">
 				<img src="img/a.jpg" alt="">
 				<div class="discription">iron man</div>
 			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/g.jpg" alt="">
-				<div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/h.jpeg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/i.jpg" alt=""><div class="discription">iron man</div>
-		</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/b.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/c.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/f.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/g.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/h.jpeg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/i.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/j.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/d.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/e.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/f.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
+		</div> -->
 
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/j.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
-		<div class="picbox">
-			<div class="pic">
-				<img src="img/k.jpg" alt=""><div class="discription">iron man</div>
-			</div>
-		</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -154,27 +78,25 @@ function minHeight(picHeightArray){
 }
 
 window.onload = function(){
-	findPosition();
-	window.onscroll = function(){
-		var pic_onload = [{
-		"picture":[{"src":"img/a.jpg"},{"src":"img/k.jpg"},{"src":"img/c.jpg"},{"src":"img/k.jpg"},{"src":"img/e.jpg"},{"src":"img/f.jpg"}]
-	}];
-		if (addPic()) {
-			var addChildToDoc = document.getElementById("container");
-			for(var i = 0;i < pic_onload[0].picture.length;i++){
-				var addChild1 = document.createElement("div");
-				addChildToDoc.appendChild(addChild1);
-			    addChild1.className = "picbox";
-			    var addChild2 = document.createElement("div");
-			    addChild1.appendChild(addChild2);
-			    addChild2.className = "pic";
-			    var addImg = document.createElement("img");
-			    addChild2.appendChild(addImg);
-			    addImg.src = pic_onload[0].picture[i].src; 
-			}
-			findPosition();
-		};
+	var url = '/cgi-bin/water_picture.py?flag=0';
+	$.get(url, show_pic);
+}
+
+function show_pic(data, status) {
+	if (status != 'success') {
+		alert('can not get img list');
+		return;
 	}
+
+	var pic_list = data['data'];
+	pic_box_html = '';
+	for (var i = 0; i < pic_list.length; ++i) {
+		pic_box_html += '<div class="picbox"><div class="pic"><img src="';
+		pic_box_html += pic_list[i].src;
+		pic_box_html += '"></div></div>';
+	}
+	alert(pic_box_html);
+	$("#container").html(pic_box_html);
 }
 </script>
 
