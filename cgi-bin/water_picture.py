@@ -20,6 +20,7 @@ def get_img_url(ret_root):
     for row in rows:
         img = {}
         img['src'] = row['c_url']
+        img['description'] = row['c_description']
         img_list.append(img)
     random.shuffle(img_list)
 
