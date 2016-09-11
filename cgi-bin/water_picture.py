@@ -14,7 +14,7 @@ from conf import g_conf
 from db_wrapper import DBWrapperFactory
 
 def get_img_url(ret_root):
-    sql = "select distinct c_url, c_description from t_image_url"
+    sql = "select distinct c_url, c_description from t_image_url limit 200"
     rows = DBWrapperFactory.get_instance('d_web_demo').get_dict(sql)
     img_list = []
     for row in rows:
